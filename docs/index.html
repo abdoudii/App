@@ -1,81 +1,250 @@
-<!DOCTYPE html>
-<html>
-    <header>
-        <link rel="stylesheet" href="test.css">
-    </header>
-    <body>
-        <main id="app">
+:root {
+    --glow-hue: 222deg;
+    --shadow-hue: 180deg;
+    --spring-easing: linear(
+        0, 0.002, 0.01 0.9%, 0.038 1.8%, 0.156, 0.312 5.8%, 0.789 11.1%, 1.015 14.2%,
+        1.096, 1.157, 1.199, 1.224 20.3%, 1.231, 1.231, 1.226, 1.214 24.6%,
+        1.176 26.9%, 1.057 32.6%, 1.007 35.5%, 0.984, 0.968, 0.956, 0.949 42%,
+        0.946 44.1%, 0.95 46.5%, 0.998 57.2%, 1.007, 1.011 63.3%, 1.012 68.3%,
+        0.998 84%, 1
+    );
+    --spring-duration: 1.33s;
+    --vh: 100%; /* Fallback */
+}
 
-            <button id='farmbutton' class="send-button">
-                <span class="shimmer"></span>
-            </button>
-            <audio id="myAudio" autoplay>
-                <source src="music.mp3" type="audio/mpeg">
-            </audio>
-            <div id="counter">0.0000</div>
-            <div class="page-bar"></div>
-            
-        </main>       
-    </body>
-    <script>
-        const button = document.querySelector('.send-button');
-        const toggleEffect = document.getElementById('toggle-effect');
-        const counterElement = document.getElementById("counter");
-        const startButton = document.getElementById("farmbutton");
-        let count = 0;
-        let intervalId;  
-        let clickable = true; 
-        let loop = true;
-        // Toggle the 'active' class on button click (for shine and text animations)
-        button.addEventListener('click', function () {
+@property --shimmer {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 33deg;
+}
 
-            button.classList.toggle('active'); // This ensures the shine and text effects are triggered
-            
-            // Toggle the 'looping' class to control only the looping behavior of the button itself
-            if (button.classList.contains('looping') && clickable===true) {
-                button.classList.remove('looping'); // Stops looping animation
+@keyframes shimmer {
+    0% {
+        --shimmer: 0deg;
+    }
+    100% {
+        --shimmer: 360deg;
+    }
+}
 
-            } else{
-                button.classList.add('looping');
-                var audio = document.getElementById("myAudio");
-                audio.play();
-                clickable=false;
-                 // Starts looping animation
-            }
-            if (!intervalId) {
-                intervalId = setInterval(() => {
-                if (loop===true){
-                    count += 0.0001;
-                    counterElement.textContent = `${count.toFixed(3)}/1`;
-                }
-                if (count>=1) {
-                    button.classList.remove('looping');
-                    loop=false;
-                }
-                // Update the counter element's text content with the current count
-                
-                }, 100);
-            }
-        });
-    
-        // Toggle switch to change between blue-red and white shine
-        if (true) {
-            // Blue-red mix when the switch is ON
-            document.documentElement.style.setProperty('--glow-hue', '220deg'); // Blue
-            document.documentElement.style.setProperty('--shadow-hue', '0deg'); // Red
-        } else {
-            // White when the switch is OFF
-            document.documentElement.style.setProperty('--glow-hue', '222deg'); // Default white
-            document.documentElement.style.setProperty('--shadow-hue', '180deg');
-        }
-        function updateVH() {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-        }
+@keyframes shine {
+    0% {
+        opacity: 0;
+    }
+    0.1% {
+        opacity: 1;
+    }
+    99.9% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 
-        window.addEventListener('resize', updateVH); // Update on resize
-        updateVH(); // Initial update      
+@keyframes text {
+    0% {
+        background-position: 100% center;
+    }
+    25% {
+        background-position: 30% center;
+    }
+    50% {
+        background-position: 0% center;
+    }
+    75% {
+        background-position: -30% center;
+    }
+    100% {
+        background-position: -100% center;
+    }
+}
 
+.send-button {
+    color: var(--bg);
+    font-weight: 600;
+    width: 60%;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('sharkcoin.png');
+    background-size: contain; /* Make sure the image covers the whole page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-attachment: fixed;
+    padding: 0.8em 1.4em;
+    position: absolute;
+    top: 250px;
+    isolation: isolate;
+    border: none;
+    box-shadow: 0 0 60px 5px hsl(var(--glow-hue) 50% 20% / 50%), inset 0 0 0 0 hsla(var(--shadow-hue), 10%, 90%, 95%);
+    border-radius: 100%;
+    scale: 1;
+    transition: all var(--spring-duration) var(--spring-easing);
+}
 
-    </script>
-</html>
+/* On hover, slightly increase button size */
+.send-button:hover {
+    transform: scale(1.05);
+}
+
+/* Active state for shine effect and text */
+.send-button.active .shimmer {
+    animation: shimmer 1s linear infinite; /* Keeps shimmer animation running */
+}
+
+.send-button.active .text {
+    animation: text 0.66s ease-in infinite; /* Keeps text animation running */
+}
+
+/* Looping animation for the button when looping class is active */
+.send-button.looping {
+    animation: buttonAnimation 2s linear infinite;
+}
+
+/* Button scale effect when looping */
+@keyframes buttonAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Shimmer effect setup */
+.shimmer {
+    position: absolute;
+    inset: -40px;
+    border-radius: inherit;
+    mask-image: conic-gradient(
+        from var(--shimmer, 0deg),
+        transparent 0%,
+        transparent 10%,
+        black 36%,
+        black 45%,
+        transparent 50%,
+        transparent 60%,
+        black 85%,
+        black 95%,
+        transparent 100%
+    );
+    mask-size: cover;
+    animation: shimmer, shine; /* Keep shine looping */
+    mix-blend-mode: plus-lighter;
+    opacity: 0;
+}
+.send-button.looping .shimmer {
+    opacity: 1; /* Ensure shimmer appears when active */
+}
+
+.shimmer::before,
+.shimmer::after {
+    transition: all 0.5s ease;
+    opacity: 0;
+    content: "";
+    border-radius: inherit;
+    position: absolute;
+    mix-blend-mode: color;
+    inset: 40px;
+    pointer-events: none;
+}
+
+.send-button.looping .shimmer::before,
+.send-button.looping .shimmer::after {
+    opacity: 1;
+    animation: shine;
+}
+
+/* Glow effects */
+.shimmer::before {
+    box-shadow: 0 0 3px 2px hsl(var(--glow-hue) 20% 95%),
+        0 0 7px 4px hsl(var(--glow-hue) 20% 80%),
+        0 0 13px 4px hsl(var(--glow-hue) 50% 70%),
+        0 0 25px 5px hsl(var(--glow-hue) 100% 70%);
+    z-index: -1;
+}
+
+.shimmer::after {
+    box-shadow: 0 0 3px 2px hsl(240, 100%, 50%),
+      0 0 7px 4px hsl(0, 100%, 50%),
+      0 0 13px 4px hsl(229, 100%, 50%),
+      0 0 25px 5px hsl(0, 100%, 51%);
+    z-index: 2;
+  }
+
+/* Text glow effect */
+.send-button .text {
+    padding: 20px 10px;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 10px white;
+    font-size: 25px;
+    font-family: Helvetica;
+    background-clip: text;
+    background-color: var(--bg);
+    background-image: linear-gradient(
+        120deg,
+        transparent,
+        hsla(var(--glow-hue), 100%, 80%, 0.66) 40%,
+        hsla(var(--glow-hue), 100%, 90%, 0.9) 50%,
+        transparent 52%
+    );
+    background-repeat: no-repeat;
+    background-size: 300% 300%;
+    background-position: center 200%;
+    transition: color 0.15s, text-shadow 0.15s;
+}
+
+/* Animate text when button is active */
+.send-button.active .text {
+    color: transparent;
+    text-shadow: none;
+    animation: text 0.66s ease-in 1 both;
+}
+
+/* General body and layout styles */
+body, html {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: black;
+}
+
+.page-bar {
+    height: 140px;
+    width: 95%;
+    background-image: linear-gradient(255deg, rgba(255, 255, 255, 0.26), rgba(0, 0, 0, 0.253));
+    backdrop-filter: blur(5px);
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.199);
+    position: absolute;
+    bottom: 50px;
+}
+
+main#app {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('bg3.png');
+    background-size: cover; /* Make sure the image covers the whole page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+    main#app {
+        height: calc(var(--vh, 1vh) * 100); /* Use the dynamically set vh unit */
+    }
+}
+
+#counter {
+    font-size: 100px;
+    text-align: center;
+    color: rgb(238, 255, 0);
+}
