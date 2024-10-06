@@ -82,6 +82,7 @@
     border-radius: 100%;
     scale: 1;
     transition: all var(--spring-duration) var(--spring-easing);
+    index-z: 5;
 }
 
 /* On hover, slightly increase button size */
