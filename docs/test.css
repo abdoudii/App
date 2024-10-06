@@ -82,7 +82,6 @@
     border-radius: 100%;
     scale: 1;
     transition: all var(--spring-duration) var(--spring-easing);
-    z-index: 5;
 }
 
 /* On hover, slightly increase button size */
@@ -129,11 +128,11 @@
         transparent 100%
     );
     mask-size: cover;
-    animation: shimmer 1s linear infinite, shine 1.2s ease-in infinite; /* Keep shine looping */
+    animation: shimmer, shine; /* Keep shine looping */
     mix-blend-mode: plus-lighter;
     opacity: 0;
 }
-.send-button.active .shimmer {
+.send-button.looping .shimmer {
     opacity: 1; /* Ensure shimmer appears when active */
 }
 
@@ -149,10 +148,10 @@
     pointer-events: none;
 }
 
-.send-button.active .shimmer::before,
-.send-button.active .shimmer::after {
+.send-button.looping .shimmer::before,
+.send-button.looping .shimmer::after {
     opacity: 1;
-    animation: shine 3600s ease-in 1 forwards;
+    animation: shine;
 }
 
 /* Glow effects */
@@ -165,11 +164,12 @@
 }
 
 .shimmer::after {
-    box-shadow: inset 0 0 0 1px hsl(var(--glow-hue) 70% 95%),
-        inset 0 0 2px 1px hsl(var(--glow-hue) 100% 80%),
-        inset 0 0 5px 2px hsl(var(--glow-hue) 100% 70%);
+    box-shadow: 0 0 3px 2px hsl(240, 100%, 50%),
+      0 0 7px 4px hsl(0, 100%, 50%),
+      0 0 13px 4px hsl(229, 100%, 50%),
+      0 0 25px 5px hsl(0, 100%, 51%);
     z-index: 2;
-}
+  }
 
 /* Text glow effect */
 .send-button .text {
@@ -241,4 +241,10 @@ main#app {
     main#app {
         height: calc(var(--vh, 1vh) * 100); /* Use the dynamically set vh unit */
     }
+}
+
+#counter {
+    font-size: 100px;
+    text-align: center;
+    color: rgb(238, 255, 0);
 }
