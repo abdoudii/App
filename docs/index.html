@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-    <header>
+    <head>
         <link rel="stylesheet" href="test.css">
         <meta name="viewport" content="width=device-width,
             initial-scale=1.0">
-    </header>
+    </head>
     <body>
         <main id="app">
 
@@ -12,72 +12,17 @@
                 <span class="shimmer"></span>
             </button>
             <audio id="myAudio" autoplay>
-                <source src="music.mp3" type="audio/mpeg">
+                <source src="music.mp3">
             </audio>
-            <div id="counter">0.0000</div>
+            <button id="claimbutton" class="claim-button">
+                <div class="left"></div>
+                <div id="counter">farm</div>
+                <div class="right"></div>
+            </button>
+            
             <div class="page-bar"></div>
             
         </main>       
     </body>
-    <script>
-        const button = document.querySelector('.send-button');
-        const toggleEffect = document.getElementById('toggle-effect');
-        const counterElement = document.getElementById("counter");
-        const startButton = document.getElementById("farmbutton");
-        let count = 0;
-        let intervalId;  
-        let clickable = true; 
-        let loop = true;
-        // Toggle the 'active' class on button click (for shine and text animations)
-        button.addEventListener('click', function () {
-
-            button.classList.toggle('active'); // This ensures the shine and text effects are triggered
-            
-            // Toggle the 'looping' class to control only the looping behavior of the button itself
-            if (button.classList.contains('looping') && clickable===true) {
-                button.classList.remove('looping'); // Stops looping animation
-
-            } else{
-                button.classList.add('looping');
-                var audio = document.getElementById("myAudio");
-                audio.play();
-                clickable=false;
-                 // Starts looping animation
-            }
-            if (!intervalId) {
-                intervalId = setInterval(() => {
-                if (loop===true){
-                    count += 0.0001;
-                    counterElement.textContent = `${count.toFixed(3)}/1`;
-                }
-                if (count>=1) {
-                    button.classList.remove('looping');
-                    loop=false;
-                }
-                // Update the counter element's text content with the current count
-                
-                }, 100);
-            }
-        });
-    
-        // Toggle switch to change between blue-red and white shine
-        if (true) {
-            // Blue-red mix when the switch is ON
-            document.documentElement.style.setProperty('--glow-hue', '220deg'); // Blue
-            document.documentElement.style.setProperty('--shadow-hue', '0deg'); // Red
-        } else {
-            // White when the switch is OFF
-            document.documentElement.style.setProperty('--glow-hue', '222deg'); // Default white
-            document.documentElement.style.setProperty('--shadow-hue', '180deg');
-        }
-        function updateVH() {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-        }
-
-        window.addEventListener('resize', updateVH); // Update on resize
-        updateVH(); // Initial update      
-
-
-    </script>
+    <script src="test.js"></script>
 </html>
