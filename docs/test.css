@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900');
 :root {
     --glow-hue: 222deg;
     --shadow-hue: 180deg;
@@ -10,7 +11,18 @@
     );
     --spring-duration: 1.33s;
     --vh: 100%; /* Fallback */
+    --text-color: hsla(210, 50%, 85%, 1);
+    --shadow-color: hsla(210, 40%, 52%, .4);
+    --btn-color: hsl(210, 80%, 42%);
+    --bg-color: #141218;
+    --content: 'farm';
+    --color1: hsl(0, 0%, 100%);
+    --color2: hsl(0, 0%, 100%);
+    --color3: hsl(0, 0%, 100%);
+    --color4: hsl(0, 0%, 100%);
+    --shimer-angle: 360deg;
 }
+
 
 @property --shimmer {
     syntax: "<angle>";
@@ -23,7 +35,7 @@
         --shimmer: 0deg;
     }
     100% {
-        --shimmer: 360deg;
+        --shimmer: var(--shimer-angle);
     }
 }
 
@@ -82,6 +94,7 @@
     border-radius: 100%;
     scale: 1;
     transition: all var(--spring-duration) var(--spring-easing);
+    animation: buttonidle 3s linear infinite;
 }
 
 /* On hover, slightly increase button size */
@@ -90,11 +103,11 @@
 }
 
 /* Active state for shine effect and text */
-.send-button.active .shimmer {
+.send-button.looping .shimmer {
     animation: shimmer 1s linear infinite; /* Keeps shimmer animation running */
 }
 
-.send-button.active .text {
+.send-button.looping .text {
     animation: text 0.66s ease-in infinite; /* Keeps text animation running */
 }
 
@@ -106,8 +119,15 @@
 /* Button scale effect when looping */
 @keyframes buttonAnimation {
     0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    30% { transform: scale(1.05); }
     100% { transform: scale(1); }
+}
+@keyframes buttonidle {
+    0% { box-shadow: 0 0 0px rgb(255, 255, 255); }
+    50% { box-shadow: 0 0 30px rgb(255, 253, 253); }
+    60% { box-shadow: 0 0 20px rgb(255, 253, 253); }
+    70% { box-shadow: 0 0 30px rgb(255, 253, 253); }
+    100% { box-shadow: 0 0 0px rgb(255, 255, 255);}
 }
 
 /* Shimmer effect setup */
@@ -164,12 +184,12 @@
 }
 
 .shimmer::after {
-    box-shadow: 0 0 3px 2px hsl(240, 100%, 50%),
-      0 0 7px 4px hsl(0, 100%, 50%),
-      0 0 13px 4px hsl(229, 100%, 50%),
-      0 0 25px 5px hsl(0, 100%, 51%);
+    box-shadow: 0 0 3px 2px var(--color1),
+      0 0 7px 4px var(--color2),
+      0 0 13px 4px var(--color3),
+      0 0 25px 5px var(--color4);
     z-index: 2;
-  }
+}
 
 /* Text glow effect */
 .send-button .text {
@@ -224,6 +244,7 @@ body, html {
 
 main#app {
     height: 100%;
+    max-width: 500px;
     width: 100%;
     position: relative;
     display: flex;
@@ -237,15 +258,104 @@ main#app {
     background-attachment: fixed;
 }
 
-@media (max-width: 768px) {
-    main#app {
-        height: calc(var(--vh, 1vh) * 100); /* Use the dynamically set vh unit */
-    }
-}
 
-#counter {
-    font-size: 50px;
-    text-align: center;
-    color: rgb(238, 255, 0);
-    text-shadow: 0 0 10px yellow;
+.claim-button {
+    position:relative;
+    padding: 10px 20px;  
+    border: none;
+    background: none;
+    cursor: pointer;
+    
+    font-family: "Source Code Pro";
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 30px;  
+    color: var(--text-color);
+    
+    background-color: var(--btn-color);
+    box-shadow: var(--shadow-color) 2px 2px 22px;
+    border-radius: 4px; 
+    z-index: 10;  
+    overflow: hidden;   
+}
+  
+.claim-button:focus {
+    outline-color: transparent;
+    box-shadow: var(--btn-color) 2px 2px 22px;
+}
+  
+.right::after, .claim-button::after {
+    content: var(--content);
+    display: block;
+    position: absolute;
+    white-space: nowrap;
+    padding: 40px 40px;
+    pointer-events:none;
+}
+  
+.claim-button::after{
+    font-weight: 200;
+    top: -30px;
+    left: -20px;
+} 
+
+.right, .left {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+.right {
+    left: 66%;
+}
+.left {
+    right: 66%;
+}
+.right::after {
+    top: -30px;
+    left: calc(-66% - 20px);
+    
+    background-color: var(--bg-color);
+    color:transparent;
+    transition: transform .4s ease-out;
+    transform: translate(0, -90%) rotate(0deg)
+}
+  
+.claim-button:hover .right::after {
+    transform: translate(0, -47%) rotate(0deg)
+}
+  
+.claim-button .right:hover::after {
+    transform: translate(0, -50%) rotate(-7deg)
+}
+  
+.claim-button .left:hover ~ .right::after {
+    transform: translate(0, -50%) rotate(7deg)
+}
+  
+  /* bubbles */
+.claim-button::before {
+    content: '';
+    pointer-events: none;
+    opacity: .6;
+    background:
+      radial-gradient(circle at 20% 35%,  transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+      radial-gradient(circle at 75% 44%, transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+      radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, var(--text-color) 5px, var(--text-color) 6px, transparent 6px);
+  
+    width: 100%;
+    height: 300%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    animation: bubbles 5s linear infinite both;
+}
+  
+@keyframes bubbles {
+    from {
+      transform: translate();
+    }
+    to {
+      transform: translate(0, -66.666%);
+    }
 }
