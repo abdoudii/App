@@ -251,7 +251,7 @@ main#app {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url('bg3.png');
+    background-image: url('background.jpg');
     background-size: cover; /* Make sure the image covers the whole page */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent image from repeating */
