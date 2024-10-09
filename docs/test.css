@@ -23,8 +23,8 @@
         0 0 25px 5px hsl(222deg 100% 70%);
     --shimer-angle: 360deg;
     --water-level: -50%;
-    --chart-width: 250px;
-    --chart-height: 200px;
+    --chart-width: 220px;
+    --chart-height: 170px;
 }
 
 body, html {
@@ -520,7 +520,8 @@ main#app {
     margin-left: 15px;
 }
 .chart-holder{
-    margin-top: 150px;
+    position: fixed;
+    bottom: 120px;
     display:flex;
 }
   
