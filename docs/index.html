@@ -5,79 +5,122 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="test.css">
+        <link rel="stylesheet" href="airdrop.css">
         <meta name="viewport" content="width=device-width,
             initial-scale=1.0">
     </head>
     <body>
-        <main id="app">
-            <div class="name-logo">
-                <div class="black">SHARKS</div>
-                <div class="yellow">SHARKS</div>
-            </div>
-            <button id='farmbutton' class="send-button">
-                <span class="shimmer"></span>
-            </button>
-            <audio id="myAudio" autoplay>
-                <source src="music.mp3">
-            </audio>
-            <button id="claimbutton" class="claim-button">
-                <div class="left"></div>
-                <div class="ucounter">farm</div>
-                <div id="counter">farm</div>
-                <div class="right"></div>
-            </button>
-            <div class="chart-holder">
-                <table class="area-chart">
-                    <tbody>
-                    <tr>
-                        <td style="--start:0.1; --end:0.5;"> 50 </td>
-                        <td style="--start:0.0; --end:0.2;"> 20 </td>
-                        <td style="--start:0.2; --end:0.4;"> 40 </td>
-                    </tr>
-                    <tr>
-                        <td style="--start:0.5; --end:0.8;"> 80 </td>
-                        <td style="--start:0.2; --end:0.5;"> 50 </td>
-                        <td style="--start:0.4; --end:0.1;"> 10 </td>
-                    </tr>
-                    <tr>
-                        <td style="--start:0.8; --end:0.4;"> 40 </td>
-                        <td style="--start:0.5; --end:0.3;"> 30 </td>
-                        <td style="--start:0.1; --end:0.2;"> 20 </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="totalholder">
-                    <div class="totalcoins">65</div>
-                    <img src="sharkcoin.png" class="coinimg">
+        <section id="main-section" class="active">
+            <main id="app">
+                <div class="name-logo">
+                    <div class="black">SHARKS</div>
+                    <div class="yellow">SHARKS</div>
                 </div>
-                
-            </div>
+                <button id='farmbutton' class="send-button">
+                    <span class="shimmer"></span>
+                </button>
+                <audio id="myAudio" autoplay>
+                    <source src="music.mp3">
+                </audio>
+                <button id="claimbutton" class="claim-button">
+                    <div class="left"></div>
+                    <div class="ucounter">farm</div>
+                    <div id="counter">farm</div>
+                    <div class="right"></div>
+                </button>
+                <div class="chart-holder">
+                    <table class="area-chart">
+                        <tbody>
+                        <tr>
+                            <td style="--start:0.1; --end:0.5;"> 50 </td>
+                            <td style="--start:0.0; --end:0.2;"> 20 </td>
+                            <td style="--start:0.2; --end:0.4;"> 40 </td>
+                        </tr>
+                        <tr>
+                            <td style="--start:0.5; --end:0.8;"> 80 </td>
+                            <td style="--start:0.2; --end:0.5;"> 50 </td>
+                            <td style="--start:0.4; --end:0.1;"> 10 </td>
+                        </tr>
+                        <tr>
+                            <td style="--start:0.8; --end:0.4;"> 40 </td>
+                            <td style="--start:0.5; --end:0.3;"> 30 </td>
+                            <td style="--start:0.1; --end:0.2;"> 20 </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="totalholder">
+                        <div class="totalcoins">65</div>
+                        <img src="sharkcoin.png" class="coinimg">
+                    </div>
+                    
+                </div>
 
-            <nav class="nav">
-                <a href="#" class="nav-item is-active">
-                  <i class='bx bx-farm'></i>
-                  <span>Farm</span>
-                </a>
-                <a href="#" class="nav-item">
-                  <i class='bx bx-tasks'></i>
-                  <span>Tasks</span>
-                </a>
-                <a href="#" class="nav-item">
-                  <i class='bx bx-Games'></i>
-                  <span>Games</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <i class='bx bx-AirDrop'></i>
-                    <span>AirDrop</span>
-                </a>
+
                 
-                <div class="nav-indicator-wrapper">
-                  <span class="nav-indicator"></span>
+            </main>
+        </section>   
+        <section id="tasks-section">tasks</section>
+        <section id="games-section">games</section>
+        <section id="airdrop-section">
+            <div class="airdrop-container">
+                <div class="withdraw-check">
+                    <li>
+                      <input type="checkbox" />
+                      <div class="letter">S</div>
+                    </li>
+                    <li>
+                      <input type="checkbox" />
+                      <div class="letter">H</div>
+                    </li>
+                    <li>
+                      <input type="checkbox" />
+                      <div class="letter">A</div>
+                    </li>
+                    <li>
+                      <input type="checkbox" />
+                      <div class="letter">R</div>
+                    </li>
+                    <li>
+                      <input type="checkbox" />
+                      <div class="letter">K</div>
+                    </li>
+                    <li>
+                      <input type="checkbox" />
+                      <div class="letter">S</div>
+                    </li>
                 </div>
-            </nav>
+                <div id="video-container">
+                    <video id="cover-video" muted>
+                        <source src="video.mp4" type="video/mp4"> <!-- Change the source to your video file -->
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+        <nav class="nav">
+            <a href="#main-section" class="nav-item is-active">
+            <i class='bx bx-farm'></i>
+            <span>Farm</span>
+            </a>
+            <a href="#tasks-section" class="nav-item">
+            <i class='bx bx-tasks'></i>
+            <span>Tasks</span>
+            </a>
+            <a href="#games-section" class="nav-item">
+            <i class='bx bx-Games'></i>
+            <span>Games</span>
+            </a>
+            <a href="#airdrop-section" class="nav-item">
+                <i class='bx bx-AirDrop'></i>
+                <span>AirDrop</span>
+            </a>
             
-        </main>       
+            <div class="nav-indicator-wrapper">
+            <span class="nav-indicator"></span>
+            </div>
+        </nav> 
     </body>
     <script src="test.js"></script>
     <script src="navbar.js"></script>
+    <script src="airdrop.js"></script>
 </html>
