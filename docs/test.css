@@ -35,8 +35,21 @@ body, html {
     justify-content: center;
     font-family: "Ruslan Display", sans-serif;
     font-weight: 100;
+    margin: 0;
     padding: 0;
-    background-color: black;
+    background-image: url('background.jpg');
+    background-size: cover; /* Make sure the image covers the whole page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-attachment: fixed;
+}
+section{
+    display: none;
+    height:100%;
+    width: 100%;
+}
+section.active{
+    display: block;
 }
 main#app {
     height: 100%;
@@ -46,11 +59,7 @@ main#app {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('background.jpg');
-    background-size: cover; /* Make sure the image covers the whole page */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent image from repeating */
-    background-attachment: fixed;
+
 }
 
 @property --shimmer {
@@ -429,10 +438,12 @@ main#app {
 }
 .name-logo .yellow{
     position: absolute;
-    color: rgb(255, 255, 0);
     font-size: 30px;
+    background: linear-gradient(to right, #feffb9 0, white 10%, #eeff00 20%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-name-logo 3s linear infinite;
     top: 0;
-    text-shadow: 0 0 20px black;
 }
 .name-logo .black{
     position: absolute;
@@ -531,5 +542,13 @@ main#app {
     }
     100% {
       background-position: 100px;
+    }
+}
+@keyframes  animate-name-logo {
+    0% {
+      background-position: 0;
+    }
+    100% {
+      background-position: 260px;
     }
 }
