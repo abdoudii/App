@@ -1,8 +1,11 @@
 const root = document.documentElement;
 const button = document.querySelector('.send-button');
+const material = document.querySelector('.material');
+const chart = document.querySelector('.chart-holder');
 const totaldiv = document.querySelector('.totalcoins');
 const ucounter = document.querySelector('.ucounter');
 const toggleEffect = document.getElementById('toggle-effect');
+const hint = document.getElementById('hint');
 const counterElement = document.getElementById("counter");
 const startButton = document.getElementById("farmbutton");
 const claimbutton = document.getElementById("claimbutton");
@@ -22,12 +25,14 @@ const startCounter = () => {
 };
 
 
+
 function minecounter() {
     console.log(loop, clickable);
     if (loop === true) {
         if (count>=1) {
             clearInterval(intervalId);
             button.classList.remove('looping');
+            material.classList.remove('active');
             ucounter.textContent='claim';
             counterElement.textContent='claim';
             loop = false;
@@ -48,33 +53,34 @@ button.addEventListener('click', () => {
 
   if (clickable === true && count === 0 && loop===false) {
     button.classList.add('looping');
+    material.classList.add('active');
     count = 0;
+    audio.play();
+    hint.textContent = "Hold to boost!";
     counterElement.textContent=`0.000`;
     ucounter.textContent=`0.000`;
     loop=true;
     clickable = false;
   }
 });
-
+const shimmer = button.querySelector('.shimmer');
 function setShineColors() {
     if (boost) {
         root.style.setProperty('--mixed-glow', `0 0 3px 2px hsl(0deg 100% 85%),
           0 0 7px 4px hsl(240deg 100% 85%),
-          0 0 13px 4px hsl(0deg 100% 70%),
-          0 0 25px 5px hsl(240deg 100% 70%)`);
+          0 0 13px 4px hsla(0deg, 100% ,70%, .2),
+          0 0 25px 5px hsla(240deg ,100% ,70%, .2)`);
 
     } else {
         root.style.setProperty('--mixed-glow', `0 0 3px 2px hsl(222deg 20% 95%),
-          0 0 7px 4px hsl(222deg 20% 80%),
-          0 0 13px 4px hsl(222deg 50% 70%),
-          0 0 25px 5px hsl(222deg 100% 70%)`);
+        0 0 7px 4px hsl(222deg 20% 80%),
+        0 0 13px 4px hsla(222, 50%, 70%, 0.2),
+        0 0 25px 5px hsla(222, 100%, 70%, 0)`);
     }
       
 }
 function claimcoin(event) {
     if ((loop === false) && (clickable === true) && claimed === false){
-        console.log(count)
-        console.log.apply(count);
         totalcoins = totalcoins + 1;
         claimed=true;
         totaldiv.textContent=totalcoins;
@@ -86,13 +92,24 @@ function claimcoin(event) {
         clickable=true;
     }
 }
+
 claimbutton.addEventListener('click', claimcoin);
 
+chart.addEventListener('click', () => {
+    if (chart.classList.contains('active')){
+        chart.classList.remove('active');
+    }
+    else{
+        chart.classList.add('active');
+    }
+});
+
 function handleBoost(event) {
+  hint.textContent = "";
   boost = true;
-  root.style.setProperty('--shimer-angle', '720deg');
+  shimmer.style.animation = 'shimmer 0.6s infinite linear'
   setShineColors();
-  intervalTime = boost? 1 : 1000;
+  intervalTime = boost? 10 : 1000;
   clearInterval(intervalId); // Clear the previous interval
   startCounter();
 
@@ -106,7 +123,7 @@ startButton.addEventListener('touchstart', handleBoost);
 function handleEndBoost() {
   boost = false;
   setShineColors(); // Call the function to set colors
-  root.style.setProperty('--shimer-angle', '360deg');
+  shimmer.style.animation = 'shimmer 1.2s infinite'
   intervalTime = boost? 100 : 1000;
   clearInterval(intervalId); // Clear the previous interval
   startCounter();
