@@ -6,8 +6,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="test.css">
         <link rel="stylesheet" href="airdrop.css">
-        <meta name="viewport" content="width=device-width,
-            initial-scale=1.0">
+        <meta name="viewport" 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     </head>
     <body>
         <section id="main-section" class="active">
@@ -19,35 +19,109 @@
                 <button id='farmbutton' class="send-button">
                     <span class="shimmer"></span>
                 </button>
-                <audio id="myAudio" autoplay>
-                    <source src="music.mp3">
-                </audio>
-                <button id="claimbutton" class="claim-button">
-                    <div class="left"></div>
-                    <div class="ucounter">farm</div>
-                    <div id="counter">farm</div>
-                    <div class="right"></div>
-                </button>
+                
+                <audio id="myAudio" src="music.mp3" preload="auto"></audio>
+                <div style="display: flex; position: relative; align-items: center; justify-content: center;">
+                    <button id="claimbutton" class="claim-button">
+                        <div class="left"></div>
+                        <div class="ucounter">sharks</div>
+                        <div id="counter">sharks</div>
+                        <div class="right"></div>
+                    </button>
+                    <div class="material">
+                        <div class="gold-m"><p>15</p><img src="gold.png" style="width: 20px; height: 20px;"></div>
+                        <div class="sharks-m"><p>45</p><img src="daddy_shark.png" style="width: 30px; height: 25px;"></div>
+                    </div>
+                </div>
+                <div id="hint" style="margin-top: 15px; animation: buttonAnimation 1s infinite;">click the coin!</div>
                 <div class="chart-holder">
-                    <table class="area-chart">
-                        <tbody>
-                        <tr>
-                            <td style="--start:0.1; --end:0.5;"> 50 </td>
-                            <td style="--start:0.0; --end:0.2;"> 20 </td>
-                            <td style="--start:0.2; --end:0.4;"> 40 </td>
-                        </tr>
-                        <tr>
-                            <td style="--start:0.5; --end:0.8;"> 80 </td>
-                            <td style="--start:0.2; --end:0.5;"> 50 </td>
-                            <td style="--start:0.4; --end:0.1;"> 10 </td>
-                        </tr>
-                        <tr>
-                            <td style="--start:0.8; --end:0.4;"> 40 </td>
-                            <td style="--start:0.5; --end:0.3;"> 30 </td>
-                            <td style="--start:0.1; --end:0.2;"> 20 </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <svg class='chart' viewBox="30 27 529 286" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="graph-copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(30.000000, 27.000000)">
+                            <g id="y_axis" font-size="11.0833333" font-family=".HelveticaNeueDeskInterface-Regular, .Helvetica Neue DeskInterface" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                                <text id="0">
+                                    <tspan x="25.3008249" y="264.333333">0</tspan>
+                                </text>
+                                <text id="200">
+                                    <tspan x="12.7757572" y="232.666667">200</tspan>
+                                </text>
+                                <text id="400">
+                                    <tspan x="12.7757572" y="201">400</tspan>
+                                </text>
+                                <text id="600">
+                                    <tspan x="12.7757572" y="169.333333">600</tspan>
+                                </text>
+                                <text id="800">
+                                    <tspan x="12.7757572" y="137.666667">800</tspan>
+                                </text>
+                                <text id="1000">
+                                    <tspan x="6.51322328" y="106">1000</tspan>
+                                </text>
+                                <text id="1200">
+                                    <tspan x="6.51322328" y="74.3333333">1200</tspan>
+                                </text>
+                                <text id="1400">
+                                    <tspan x="6.51322328" y="42.6666667">1400</tspan>
+                                </text>
+                                <text id="1600">
+                                    <tspan x="6.51322328" y="11">1600</tspan>
+                                </text>
+                            </g>
+                            <g id="GRAPHS" transform="translate(64.000000, 16.000000)" stroke-linecap="round" stroke-width="8" stroke-linejoin="round">
+                                <polyline id="Banks" stroke="#5BCAC1" points="0 1 88.0438662 1 128.985782 137 180.170616 137 224.189573 182 256.947867 91 301.990521 137 346.009479 91 392.087202 91 429.952607 179"></polyline>
+                                <polyline id="Bridge" stroke="#81DEFF" points="2.04739336 183 54.2559242 227 96.2274882 47 133.080569 1 302.018438 1 346.680361 44.6280822 386.957346 0 427.905213 43"></polyline>
+                                <polyline id="PayPal" stroke="#F6F5A6" points="2.04739336 180 53.273159 180 99.2985782 91 137.175355 47 219.077488 47 256.947867 90 301.990521 47 349.080569 137 398.228672 137 432 91"></polyline>
+                            </g>
+                            <g id="x_axis" transform="translate(71.974046, 271.541667)" font-size="11.0833333" font-family=".HelveticaNeueDeskInterface-Regular, .Helvetica Neue DeskInterface" fill="#FFFFFF" opacity="0.4" font-weight="normal">
+                                <text id="1">
+                                    <tspan x="0.396183206" y="11">1</tspan>
+                                </text>
+                                <text id="2">
+                                    <tspan x="39.2603361" y="11">2</tspan>
+                                </text>
+                                <text id="3">
+                                    <tspan x="78.8786567" y="11">3</tspan>
+                                </text>
+                                <text id="4">
+                                    <tspan x="118.496977" y="11">4</tspan>
+                                </text>
+                                <text id="5">
+                                    <tspan x="158.115298" y="11">5</tspan>
+                                </text>
+                                <text id="6">
+                                    <tspan x="197.733619" y="11">6</tspan>
+                                </text>
+                                <text id="7">
+                                    <tspan x="237.351939" y="11">7</tspan>
+                                </text>
+                                <text id="8">
+                                    <tspan x="276.97026" y="11">8</tspan>
+                                </text>
+                                <text id="9">
+                                    <tspan x="316.58858" y="11">9</tspan>
+                                </text>
+                                <text id="10">
+                                    <tspan x="359.229833" y="11">10</tspan>
+                                </text>
+                                <text id="11">
+                                    <tspan x="400.036703" y="11">11</tspan>
+                                </text>
+                                <text id="12">
+                                    <tspan x="438.466474" y="11">12</tspan>
+                                </text>
+                            </g>
+                            <g id="grid" transform="translate(46.618321, 4.750000)" stroke="#FFFFFF" stroke-linecap="square" opacity="0.0800000057">
+                                <path d="M0.396183206,1.1875 L478.991396,1.1875" id="Line"></path>
+                                <path d="M0.396183206,32.8541667 L478.991396,32.8541667" id="Line"></path>
+                                <path d="M0.396183206,64.5208333 L478.991396,64.5208333" id="Line"></path>
+                                <path d="M0.396183206,96.1875 L478.991396,96.1875" id="Line"></path>
+                                <path d="M0.396183206,127.854167 L478.991396,127.854167" id="Line"></path>
+                                <path d="M0.396183206,159.520833 L478.991396,159.520833" id="Line"></path>
+                                <path d="M0.396183206,191.1875 L478.991396,191.1875" id="Line"></path>
+                                <path d="M0.396183206,222.854167 L478.991396,222.854167" id="Line"></path>
+                                <path d="M0.396183206,254.520833 L478.991396,254.520833" id="Line"></path>
+                            </g>
+                        </g>
+                    </svg>
                     <div class="totalholder">
                         <div class="totalcoins">65</div>
                         <img src="sharkcoin.png" class="coinimg">
@@ -58,11 +132,13 @@
 
                 
             </main>
-        </section>   
-        <section id="tasks-section">tasks</section>
-        <section id="games-section">games</section>
+        </section> 
+        <section id="tasks-section" ><div style="font-size:50px; position: fixed; top: 50%;left: 50%;transform: translateX(-50%);">tasks</div></section>
+        <section id="games-section"><div style="font-size:50px; position: fixed; top: 50%;left: 50%;transform: translateX(-50%);">games</div></section>
+        <section id="friends-section"><div style="font-size:50px; position: fixed; top: 50%;left: 50%;transform: translateX(-50%);">friends</div></section>  
         <section id="airdrop-section">
             <div class="airdrop-container">
+                <div style="margin-bottom: 15px; animation: buttonAnimation 0.8s infinite;">Pop it!!!</div>
                 <div class="withdraw-check">
                     <li>
                       <input type="checkbox" />
@@ -97,28 +173,45 @@
                 </div>
             </div>
         </section>
-        <nav class="nav">
-            <a href="#main-section" class="nav-item is-active">
-            <i class='bx bx-farm'></i>
-            <span>Farm</span>
-            </a>
-            <a href="#tasks-section" class="nav-item">
-            <i class='bx bx-tasks'></i>
-            <span>Tasks</span>
-            </a>
-            <a href="#games-section" class="nav-item">
-            <i class='bx bx-Games'></i>
-            <span>Games</span>
-            </a>
-            <a href="#airdrop-section" class="nav-item">
-                <i class='bx bx-AirDrop'></i>
-                <span>AirDrop</span>
-            </a>
+        <div class="nav">
+            <li class="active">
+                <div href="#main-section" style="border-radius: 10px 0px 0px 10px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-141.7-35.3c4.9-33-20.2-50.7-54.6-62.6l11.1-44.7-27.2-6.8-10.9 43.5c-7.2-1.8-14.5-3.5-21.8-5.1l10.9-43.8-27.2-6.8-11.2 44.7c-5.9-1.3-11.7-2.7-17.4-4.1l0-.1-37.5-9.4-7.2 29.1s20.2 4.6 19.8 4.9c11 2.8 13 10 12.7 15.8l-12.7 50.9c.8 .2 1.7 .5 2.8 .9-.9-.2-1.9-.5-2.9-.7l-17.8 71.3c-1.3 3.3-4.8 8.4-12.5 6.5 .3 .4-19.8-4.9-19.8-4.9l-13.5 31.1 35.4 8.8c6.6 1.7 13 3.4 19.4 5l-11.3 45.2 27.2 6.8 11.2-44.7a1038.2 1038.2 0 0 0 21.7 5.6l-11.1 44.5 27.2 6.8 11.3-45.1c46.4 8.8 81.3 5.2 96-36.7 11.8-33.8-.6-53.3-25-66 17.8-4.1 31.2-15.8 34.7-39.9zm-62.2 87.2c-8.4 33.8-65.3 15.5-83.8 10.9l14.9-59.9c18.4 4.6 77.6 13.7 68.8 49zm8.4-87.7c-7.7 30.7-55 15.1-70.4 11.3l13.5-54.3c15.4 3.8 64.8 11 56.8 43z"/>
+                    </svg>
+                </div>
+            </li>
+            <li>
+                <div href="#tasks-section">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <path d="M0 96C0 60.7 28.7 32 64 32l448 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zM128 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm32-128a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96-248c-13.3 0-24 10.7-24 24s10.7 24 24 24l224 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-224 0zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24l224 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-224 0zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24l224 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-224 0z"/>
+                    </svg>
+                </div>
+            </li>
+            <li>
+                <div href="#games-section">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="width: 50%;">
+                        <path d="M192 64C86 64 0 150 0 256S86 448 192 448l256 0c106 0 192-86 192-192s-86-192-192-192L192 64zM496 168a40 40 0 1 1 0 80 40 40 0 1 1 0-80zM392 304a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24l0 32 32 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-32 0 0 32c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-32-32 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l32 0 0-32z"/>
+                    </svg>
+                </div>
+            </li>
             
-            <div class="nav-indicator-wrapper">
-            <span class="nav-indicator"></span>
-            </div>
-        </nav> 
+            <li>
+                <div href="#friends-section">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="width: 38%;">
+                        <path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3zM609.3 512l-137.8 0c5.4-9.4 8.6-20.3 8.6-32l0-8c0-60.7-27.1-115.2-69.8-151.8c2.4-.1 4.7-.2 7.1-.2l61.4 0C567.8 320 640 392.2 640 481.3c0 17-13.8 30.7-30.7 30.7zM432 256c-31 0-59-12.6-79.3-32.9C372.4 196.5 384 163.6 384 128c0-26.8-6.6-52.1-18.3-74.3C384.3 40.1 407.2 32 432 32c61.9 0 112 50.1 112 112s-50.1 112-112 112z"/>
+                    </svg>
+                </div>
+            </li>
+            <li>
+                <div href="#airdrop-section" style="border-radius: 0px 10px 10px 0px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 35%;">
+                        <path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-224c0-35.3-28.7-64-64-64L80 128c-8.8 0-16-7.2-16-16s7.2-16 16-16l368 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L64 32zM416 272a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                    </svg>
+                </div>
+            </li>
+            <div id="marker"></div>
+        </div>
     </body>
     <script src="test.js"></script>
     <script src="navbar.js"></script>
